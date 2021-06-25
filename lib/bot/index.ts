@@ -16,15 +16,56 @@ declare interface Bot {
   on(event: 'audio_message', listener: (msg: UserMessage) => void): this;
   on(event: 'card_message', listener: (msg: UserMessage) => void): this;
   on(event: 'system_message', listener: (msg: SystemMessage) => void): this;
-  on(event: 'add_reaction', listener: (msg: addReaction) => void): this;
-  on(event: 'delete_reaction', listener: (msg: deleteReaction) => void): this;
-  on(event: 'update_message', listener: (msg: updateMessage) => void): this;
-  on(event: 'delete_message', listener: (msg: deleteMessage) => void): this;
+  on(event: 'add_reaction', listener: (msg: add_reaction) => void): this;
+  on(event: 'delete_reaction', listener: (msg: delete_reaction) => void): this;
+  on(event: 'update_message', listener: (msg: update_message) => void): this;
+  on(event: 'delete_message', listener: (msg: delete_message) => void): this;
   on(event: 'added_channel', listener: (msg: typeChannel) => void): this;
   on(event: 'updated_channel', listener: (msg: typeChannel) => void): this;
-  on(event: 'delete_channel', listener: (msg: deleteChannel) => void): this;
-  on(event: 'pinned_message', listener: (msg: pinMessage) => void): this;
-  on(event: 'unpinned_message', listener: (msg: unpinMessage) => void): this;
+  on(event: 'delete_channel', listener: (msg: delete_channel) => void): this;
+  on(event: 'pinned_message', listener: (msg: pinned_message) => void): this;
+  on(event: 'unpinned_message', listener: (msg: unpinned_message) => void): this;
+  on(event: 'updated_private_message', listener: (msg: updated_private_message) => void): this;
+  on(event: 'deleted_private_message', listener: (msg: deleted_private_message) => void): this;
+  on(event: 'private_added_reaction', listener: (msg: private_added_reaction) => void): this;
+  on(event: 'private_deleted_reaction', listener: (msg: private_deleted_reaction) => void): this;
+}
+
+export interface private_deleted_reaction {
+  emoji: {
+    id: string,
+    name: string
+  },
+  user_id: string,
+  chat_code: string,
+  msg_id: string
+}
+
+export interface private_added_reaction {
+  emoji: {
+    id: string,
+    name: string
+  },
+  user_id: string,
+  chat_code: string,
+  msg_id: string
+}
+
+export interface deleted_private_message {
+  chat_code: string,
+  msg_id: string,
+  author_id: string,
+  target_id: string,
+  deleted_at: number
+}
+
+export interface updated_private_message {
+  author_id: string,
+  target_id: string,
+  msg_id: string,
+  content: string,
+  updated_at: number,
+  chat_code: string
 }
 
 interface KaiheilaEvent {
@@ -79,7 +120,7 @@ export interface SystemMessage extends KaiheilaEvent {
   }
 }
 
-export interface addReaction {
+export interface add_reaction {
   channel_id: string,
   emoji: {
     id: string,
@@ -89,7 +130,7 @@ export interface addReaction {
   msg_id: string
 }
 
-export interface deleteReaction {
+export interface delete_reaction {
   channel_id: string,
   emoji: {
     id: string,
@@ -99,7 +140,7 @@ export interface deleteReaction {
   msg_id: string
 }
 
-export interface updateMessage {
+export interface update_message {
   channel_id: string,
   content: string,
   mention: string[],
@@ -110,23 +151,23 @@ export interface updateMessage {
   msg_id: string
 }
 
-export interface deleteMessage {
+export interface delete_message {
   channel_id: string,
   msg_id: string
 }
 
-export interface deleteChannel {
+export interface delete_channel {
   id: string,
   delete_at: number
 }
 
-export interface unpinMessage {
+export interface unpinned_message {
   channel_id: string,
   operator_id: string,
   msg_id: string
 }
 
-export interface pinMessage {
+export interface pinned_message {
   channel_id: string,
   operator_id: string,
   msg_id: string
