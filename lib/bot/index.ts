@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import ws from './ws'
 import Server, { Role } from './api/server'
 import Messages from './api/messages';
-import Channel, { Channel as typeChannel} from './api/Channel';
+import Channel, { Channel as typeChannel} from './api/channel';
 import logger from '../logger'
 import { Logger } from 'log4js'
 
