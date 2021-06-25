@@ -29,6 +29,151 @@ declare interface Bot {
   on(event: 'deleted_private_message', listener: (msg: deleted_private_message) => void): this;
   on(event: 'private_added_reaction', listener: (msg: private_added_reaction) => void): this;
   on(event: 'private_deleted_reaction', listener: (msg: private_deleted_reaction) => void): this;
+  on(event: 'joined_guild', listener: (msg: joined_guild) => void): this;
+  on(event: 'exited_guild', listener: (msg: exited_guild) => void): this;
+  on(event: 'updated_guild_member', listener: (msg: updated_guild_member) => void): this;
+  on(event: 'guild_member_online', listener: (msg: guild_member_online) => void): this;
+  on(event: 'guild_member_offline', listener: (msg: guild_member_offline) => void): this;
+  on(event: 'added_role', listener: (msg: added_role) => void): this;
+  on(event: 'deleted_role', listener: (msg: deleted_role) => void): this;
+  on(event: 'updated_role', listener: (msg: updated_role) => void): this;
+  on(event: 'updated_guild', listener: (msg: updated_guild) => void): this;
+  on(event: 'deleted_guild', listener: (msg: deleted_guild) => void): this;
+  on(event: 'added_block_list', listener: (msg: added_block_list) => void): this;
+  on(event: 'deleted_block_list', listener: (msg: deleted_block_list) => void): this;
+  on(event: 'joined_channel', listener: (msg: joined_channel) => void): this;
+  on(event: 'exited_channel', listener: (msg: exited_channel) => void): this;
+  on(event: 'user_updated', listener: (msg: user_updated) => void): this;
+  on(event: 'self_joined_guild', listener: (msg: self_joined_guild) => void): this;
+  on(event: 'self_exited_guild', listener: (msg: self_exited_guild) => void): this;
+  on(event: 'message_btn_click', listener: (msg: message_btn_click) => void): this;
+}
+
+export interface message_btn_click {
+  value: string,
+  msg_id: string,
+  user_id: string,
+  target_id : string
+}
+
+export interface self_exited_guild {
+  guild_id: string
+}
+
+export interface self_joined_guild {
+  guild_id: string
+}
+
+export interface user_updated {
+  user_id: string,
+  username: string,
+  avatar: string
+}
+
+export interface exited_channel {
+  user_id: string,
+  channel_id: string,
+  exited_at: number
+}
+
+export interface joined_channel {
+  user_id: string,
+  channel_id: string,
+  joined_at: number
+}
+
+export interface deleted_block_list {
+  operator_id: string,
+  user_id: string[]
+}
+
+export interface added_block_list {
+  operator_id: string,
+  remark: string,
+  user_id: string[]
+}
+
+export interface deleted_guild {
+  id: string,
+  name: string,
+  user_id: string,
+  icon: string,
+  notify_type: number,
+  region: string,
+  enable_open: number,
+  open_id: number,
+  default_channel_id: string,
+  welcome_channel_id: string
+}
+
+export interface updated_guild {
+  id: string,
+  name: string,
+  user_id: string,
+  icon: string,
+  notify_type: number,
+  region: string,
+  enable_open: number,
+  open_id: number,
+  default_channel_id: number,
+  welcome_channel_id: number
+}
+
+export interface updated_role {
+  role_id: number,
+  name: string,
+  color: number,
+  position: number,
+  hoist: number,
+  mentionable: number,
+  permissions: number
+}
+
+export interface deleted_role {
+  role_id: number,
+  name: string,
+  color: number,
+  position: number,
+  hoist: number,
+  mentionable: number,
+  permissions: number
+}
+
+export interface added_role {
+  role_id: number,
+  name: string,
+  color: number,
+  position: number,
+  hoist: number,
+  mentionable: number,
+  permissions: number
+}
+
+export interface guild_member_offline {
+  user_id: string,
+  event_time: number,
+  guilds: string[]
+}
+
+export interface guild_member_online {
+  user_id: string,
+  event_time: number,
+  guilds: string[]
+}
+
+export interface updated_guild_member {
+  user_id: string,
+  nickname: string
+}
+
+export interface exited_guild {
+  user_id: string,
+  exited_at: number
+}
+
+export interface joined_guild {
+  user_id: string,
+  joined_at: number
 }
 
 export interface private_deleted_reaction {
