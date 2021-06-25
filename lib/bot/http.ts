@@ -38,4 +38,16 @@ export default class API {
     if (result.code === 0) return result.data
     throw new Error(result.message)
   }
+
+  public async form (url: string, data: any) {
+    const result: KaiheilaAPIReturn = await got.post(encodeURI(`https://www.kaiheila.cn/api/v3${url}`), {
+      headers: {
+        Authorization: `Bot ${this.token}`,
+        'Content-type': 'form-data'
+      },
+      form: data
+    }).json()
+    if (result.code === 0) return result.data
+    throw new Error(result.message)
+  }
 }

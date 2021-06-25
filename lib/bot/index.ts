@@ -1,8 +1,12 @@
-import { EventEmitter } from 'events';
 import ws from './ws'
-import Server, { Role } from './api/server'
-import Messages from './api/messages';
-import Channel, { Channel as typeChannel} from './api/channel';
+import { EventEmitter } from 'events'
+import Server, { Role as TypeRole } from './api/server'
+import Messages from './api/messages'
+import Channel, { Channel as typeChannel} from './api/channel'
+import PrivateChat from './api/private_chat'
+import PirvateMessage from './api/private_message'
+import Asset from './api/asset'
+import Role from './api/role'
 import logger from '../logger'
 import { Logger } from 'log4js'
 
@@ -291,7 +295,7 @@ export interface update_message {
   mention: string[],
   mention_all: boolean,
   mention_here: boolean,
-  mention_roles: Role[],
+  mention_roles: TypeRole[],
   updated_at: number,
   msg_id: string
 }
@@ -325,15 +329,26 @@ class Bot extends EventEmitter{
   public Server: Server
   public Messages: Messages
   public Channel: Channel
+  public PrivateChat: PrivateChat
+  public PrivateMessage: PirvateMessage
+  public Asset: Asset
+  public Role: Role
+
   public Logger: (category?: string) => Logger;
 
   constructor (token: string) {
     super()
     this.token = token
     this.ws = new ws(this.token)
+
     this.Server = new Server(this.token)
     this.Messages = new Messages(this.token)
     this.Channel = new Channel(this.token)
+    this.PrivateChat = new PrivateChat(this.token)
+    this.PrivateMessage = new PirvateMessage(this.token)
+    this.Asset = new Asset(this.token)
+    this.Role = new Role(this.token)
+
     this.Logger = logger
 
     this.ws.on('open', () => this.emit('open'))
