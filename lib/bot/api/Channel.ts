@@ -1,6 +1,30 @@
 import http from '../http'
 import { User } from './server'
 
+export interface Channel {
+    id: string,
+    name: string,
+    user_id: string,
+    guild_id: string,
+    is_category: boolean,
+    parent_id: string,
+    level: number,
+    slow_mode: number,
+    topic: string,
+    type: number,
+    permission_overwrites: {
+      role_id: number,
+      allow: number,
+      deny: number
+    }[],
+    permission_users: {
+      user: User,
+      allow: number,
+      deny: number
+    }[],
+    permission_sync: number
+}
+
 export default class Messages {
   private http: http
   private token: string
