@@ -25,7 +25,7 @@
 - [x] ~~用户相关事件~~
 
 ## 配置文件
-```json
+```javascript
 {
   "bot": {
     "token": "机器人的token"
