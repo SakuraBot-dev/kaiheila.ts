@@ -1,8 +1,12 @@
 {
   "name": "khts",
-  "version": "1.0.0-fix1",
+  "version": "1.0.0-fix2",
   "description": "一个使用TypeScript编写的开黑啦机器人框架",
-  "main": "./dist/app.js",
+  "main": "dist/app.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
   "dependencies": {
     "eslint": "^7.29.0",
     "got": "^11.8.2",
