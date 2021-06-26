@@ -39,7 +39,7 @@ export default class PluginManager {
         regexp.lastIndex = 0
         if (regexp.test(msg.content)) {
           const reply = (type: number, message: string | CardBuilder  | CardBuilder[]) => {
-            bot.Messages.sendMessage({
+            return bot.Messages.sendMessage({
               type: type,
               target_id: msg.target_id,
               content: message
