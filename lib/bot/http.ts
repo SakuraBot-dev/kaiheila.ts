@@ -1,4 +1,5 @@
 import got from 'got'
+import logger from '../logger'
 
 export interface KaiheilaAPIReturn {
   code: number
@@ -13,6 +14,8 @@ export default class API {
   }
 
   public async get (url: string, args: {[index: string]: string | number} = {}) {
+    logger('HTTP-GET').debug(url, args)
+
     const arg = []
     for (const name in args) {
       arg.push(`${name}=${args[name]}`)
@@ -28,6 +31,8 @@ export default class API {
   }
 
   public async post (url: string, data: any) {
+    logger('HTTP-POST').debug(url, data)
+
     const result: KaiheilaAPIReturn = await got.post(encodeURI(`https://www.kaiheila.cn/api/v3${url}`), {
       headers: {
         Authorization: `Bot ${this.token}`,

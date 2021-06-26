@@ -1,3 +1,4 @@
+import CardBuilder from '../CardBuilder'
 import http from '../http'
 import { Role } from './server'
 
@@ -37,7 +38,7 @@ export default class Messages {
   async sendMessage (options: {
     type: number,
     target_id: string,
-    content: any,
+    content: string | CardBuilder  | CardBuilder[],
     quote?: string,
     temp_target_id?: string
   }): Promise<{
@@ -45,9 +46,16 @@ export default class Messages {
     msg_timestamp: number,
     nonce: string
   }> {
+    const copy = {...options}
+    if (copy.content instanceof Array) {
+      copy.content = JSON.stringify(copy.content.map(e => e.card))
+    } else if (typeof copy.content === 'object') {
+      copy.content = JSON.stringify([copy.content.card])
+    }
+
     return await this.http.post('/message/create', {
       nonce: (Math.random()*1e16).toString(16),
-      ...options
+      ...copy
     })
   }
 

@@ -1,3 +1,4 @@
+import CardBuilder from '../CardBuilder'
 import http from '../http'
 
 export default class PirvateMessage {
@@ -31,7 +32,7 @@ export default class PirvateMessage {
     type?: number,
     target_id?: string,
     chat_code?: string,
-    content?: string,
+    content?: string | CardBuilder  | CardBuilder[],
     quote?: string
   }): Promise<{
     msg_id: string,
@@ -39,9 +40,17 @@ export default class PirvateMessage {
     nonce: string
   }> {
     if (!options.chat_code && !options.target_id) throw new Error('chat_code 和 target_id 必填一个')
+    
+    const copy = {...options}
+    if (copy.content instanceof Array) {
+      copy.content = JSON.stringify(copy.content.map(e => e.card))
+    } else if (typeof copy.content === 'object') {
+      copy.content = JSON.stringify([copy.content.card])
+    }
+
     return await this.http.post('/direct-message/create', {
       nonce: (Math.random()*1e16).toString(16),
-      ...options
+      ...copy
     })
   }
 

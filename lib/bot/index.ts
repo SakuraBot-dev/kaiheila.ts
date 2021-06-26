@@ -7,6 +7,7 @@ import PrivateChat from './api/private_chat'
 import PirvateMessage from './api/private_message'
 import Asset from './api/asset'
 import Role from './api/role'
+import CardBuilder from './CardBuilder'
 import logger from '../logger'
 import { Logger } from 'log4js'
 
@@ -370,6 +371,10 @@ class Bot extends EventEmitter{
         }
       }
     })
+  }
+
+  getCardBuilder () {
+    return new CardBuilder()
   }
 }
 

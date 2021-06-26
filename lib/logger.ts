@@ -1,4 +1,9 @@
+import { readFileSync } from 'fs'
 import log4js from 'log4js'
+import { resolve } from 'path'
+import { BotConfig } from '../app'
+
+const config: BotConfig = JSON.parse(readFileSync(resolve('./config.json')).toString())
 
 const conf: any = {
   appenders: {
@@ -21,7 +26,7 @@ const conf: any = {
   categories: {
     default: {
       appenders: ['defaultFile', 'console'],
-      level: process.env.NODE_ENV === 'development' ? 'DEBUG' : 'INFO'
+      level: config.logger.level
     }
   }
 }
