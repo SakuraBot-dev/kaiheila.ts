@@ -30,7 +30,7 @@ argv.forEach((value, index) => {
       'khts start <配置文件> \t 启动Bot'
     ].join('\n'))
   } else if (value === 'start') {
-    const App = require('kaiheila.ts')
+    const App = require('khts')
     const config = JSON.parse(fs.readFileSync(argv[index + 1]).toString())
     new App.default(config)
   }
