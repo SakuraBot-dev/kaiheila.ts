@@ -42,6 +42,26 @@
 }
 ```
 
+## 插件开发
+参考以下代码
+```typescript
+import { ctx } from "./lib/plugin"; // 引入这个是为了代码提示
+
+export default (ctx: ctx) => {
+  ctx.logger.info(ctx.config) // 插件的配置文件在这里可以找到
+
+  ctx.logger.info('xxx') // 这个是日志模块
+
+  // 注册一个命令
+  ctx.command(/^\/help$/, '/help', '查看帮助信息', (match, event, reply) => {
+    // 命令被触发做的事情
+    reply(1, 'xxx') // 快速回复
+  })
+
+  ctx.bot // Bot实例在这里
+}
+```
+
 ## BUG反馈
 - 直接提交 issue
 - [开黑啦](https://kaihei.co/61zvJF)
