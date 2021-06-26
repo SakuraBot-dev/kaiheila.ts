@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs'
 import robot from './lib/bot'
 import PluginManager from './lib/plugin'
 
@@ -14,11 +13,16 @@ export interface BotConfig {
   }
 }
 
-const config: BotConfig = JSON.parse(readFileSync('./config.json').toString())
+export default class {
+  public client: robot
+  public plugin: PluginManager
 
-const client = new robot(config.bot.token)
-const plugin = new PluginManager(client, config)
+  constructor (config: BotConfig) {
+    this.client = new robot(config.bot.token)
+    this.plugin = new PluginManager(this.client, config)
 
-for (const item in config.plugins) {
-  plugin.load(item)
+    for (const item in config.plugins) {
+      this.plugin.load(item)
+    }
+  }
 }

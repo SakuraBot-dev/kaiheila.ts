@@ -1,5 +1,5 @@
 # kaiheila.ts
-> 一个使用 typescript 编写的开黑啦机器人框架
+一个使用 typescript 编写的开黑啦机器人框架
 
 ## 开发进度
 - [x] ~~服务器相关接口~~
@@ -23,6 +23,23 @@
 - [x] ~~服务器相关事件~~
 - [x] ~~消息相关事件~~
 - [x] ~~用户相关事件~~
+
+## 使用方法
+首先安装 kaiheila.ts
+```shell
+npm install khts
+```
+然后初始化一个配置文件
+```shell
+npx khts init
+```
+接下来按照下面的文档修改配置文件
+
+修改完成后运行
+```shell
+npx khts start
+```
+启动机器人
 
 ## 配置文件
 ```javascript

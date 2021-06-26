@@ -1,4 +1,8 @@
 {
+  "name": "khts",
+  "version": "1.0.0",
+  "description": "一个使用TypeScript编写的开黑啦机器人框架",
+  "main": "./dist/app.js",
   "dependencies": {
     "eslint": "^7.29.0",
     "got": "^11.8.2",
@@ -11,7 +15,28 @@
     "ts-node": "^10.0.0",
     "typescript": "^4.3.4"
   },
+  "bin": {
+    "khts": "./bin/bin.js"
+  },
   "scripts": {
-    "dev": "ts-node ./app.ts"
-  }
+    "dev": "ts-node ./app.ts",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SakuraBot-dev/kaiheila.ts.git"
+  },
+  "keywords": [
+    "开黑啦",
+    "kaiheila",
+    "typescript",
+    "Bot",
+    "ChatBot"
+  ],
+  "author": "TheresaQWQ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SakuraBot-dev/kaiheila.ts/issues"
+  },
+  "homepage": "https://github.com/SakuraBot-dev/kaiheila.ts#readme"
 }
