@@ -25,6 +25,7 @@
 - [x] ~~用户相关事件~~
 
 ## 使用方法
+### 使用cli
 首先安装 kaiheila.ts
 ```shell
 npm install khts
@@ -40,6 +41,17 @@ npx khts init
 npx khts start
 ```
 启动机器人
+### 手写代码
+```typescript
+import App from 'khts'
+
+const bot = new App({
+  // 配置写这里
+})
+
+bot.plugin.load('xxx') // 手动加载插件 (注：此方法加载插件将会无法使用配置文件，推荐把插件直接卸载配置里面)
+bot.client // 访问Bot实例
+```
 
 ## 配置文件
 ```javascript

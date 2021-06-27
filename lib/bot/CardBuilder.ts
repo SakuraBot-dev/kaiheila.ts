@@ -117,7 +117,11 @@ export default class CardBuilder {
     text: string,
     mode: 'left' | 'right',
     theme: 'primary' | 'success' | 'danger' | 'warning' | 'info' | 'secondary',
-    button: string
+    button: {
+      text: string,
+      click?: 'return-val' | 'link',
+      value: string
+    }
   }) {
     this.card.modules.push({
       type: 'section',
@@ -129,9 +133,11 @@ export default class CardBuilder {
       accessory: {
         type: 'button',
         theme: options.theme,
+        click: options.button.click || '',
+        value: options.button.value,
         text: {
           type: 'plain-text',
-          content: options.button
+          content: options.button.text
         }
       }
     })
@@ -170,6 +176,7 @@ export default class CardBuilder {
     theme: 'primary' | 'success' | 'danger' | 'warning' | 'info' | 'secondary',
     value: string,
     titleType?: string
+    click?: 'return-val' | 'link',
   }[]) {
     this.card.modules.push({
       type: 'action-group',
@@ -178,6 +185,7 @@ export default class CardBuilder {
           type: 'button',
           theme: btn.theme,
           value: btn.value,
+          click: btn.click || '',
           text: {
             type: btn.titleType || 'plain-text',
             content: btn.title
